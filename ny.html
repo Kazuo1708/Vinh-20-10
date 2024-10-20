@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp 20/10</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebee;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .intro, .memory {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.5s;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            width: 400px;
+            height: 350px;
+            background: linear-gradient(135deg, #ff9aa2, #ffb3ba);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .card h1, .memory h1 {
+            font-size: 16px;
+            color: #d76b30;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .decor {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.1;
+            background-image: url('https://www.transparentpng.com/thumb/flower/flower-transparent-background-9GFL8o.png');
+            background-size: 60px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d65a50;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1524563200800-b17cfd14e062');
+            background-size: cover;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        audio {
+            display: none;
+        }
+
+        .memory-images {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .memory-images img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin: 0 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .timer {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .message {
+            background: rgba(255, 228, 225, 0.9); /* Màu hồng ngọt ngào */
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 360px; /* Kích thước khung chúc */
+            text-align: left; /* Căn trái cho nội dung */
+            position: relative;
+        }
+
+        .message img {
+            width: 50px; /* Kích thước ảnh capybara */
+            height: 50px;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-image"></div>
+
+    <audio id="music" autoplay>
+        <source src="100YearsLOVESingle-NamDuc-6207759.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="intro" id="intro">
+        <h1>Chúc mừng Ngày 20/10 vui vẻ nhé, ít yêu của anh!</h1>
+        <h2>Có yêu anh khum?</h2>
+        <button class="button" onclick="showMemory()">Có</button>
+        <button class="button" onclick="moveCard()">Không</button>
+    </div>
+
+    <div class="memory" id="memory">
+        <h1>Kỷ niệm thời gian yêu:</h1>
+        <div class="timer" id="timer"></div>
+        <div class="memory-images">
+            <a href="https://ibb.co/sFvQhTT"><img src="https://i.ibb.co/JzR2NYY/462536210-1076970860036306-2402860053359738210-n.jpg" alt="Người yêu 1" /></a>
+            <a href="https://ibb.co/W5H73sb"><img src="https://i.ibb.co/3dTVskD/462552905-842521907961093-6410450940892218185-n.jpg" alt="Người yêu 2" /></a>
+            <a href="https://ibb.co/5hCZw40"><img src="https://i.ibb.co/qYh6VjS/462538185-1768197217251433-7446363795930800155-n.jpg" alt="Người yêu 3" /></a>
+            <a href="https://ibb.co/DVSrqFv"><img src="https://i.ibb.co/C1TPryY/462543974-836769135003864-2822940406077045357-n.jpg" alt="Người yêu 4" /></a>
+        </div>
+
+        <div class="message">
+            <h2>Chúc em 20/10 :</h2>
+            <p>Tới ngày 20-10 rồi anh không biết nói những lời ngọt ngào có cánh, những lời lãng mạn nhưng anh biết anh yêu em rất rất nhiều và em cũng vậy. Anh chúc em luôn có sức khỏe, ngày càng xinh đẹp hơn và tiến bộ nhiều hơn trong học tập. Anh hứa với em, anh sẽ mãi luôn ở bên để bảo vệ, chăm lo và yêu thương em. Dù trước đó anh đã làm nhiều điều làm em nghĩ và buồn, nhưng mà như lời anh đã hứa với em, anh sẽ thực hiện được. Anh yêu em 🥰🥰😘.</p>
+           
+        </div>
+    </div>
+
+    <div class="card" id="card">
+        <div class="decor"></div>
+        <h1>Tới ngày 20-10 rồi anh không biết nói những lời ngọt ngào có cánh, những lời lãng mạn nhưng anh biết anh yêu em rất rất nhiều và em cũng vậy. Anh hứa với em, anh sẽ mãi luôn ở bên để bảo vệ, chăm lo và yêu thương em. Dù trước đó anh đã làm nhiều điều khiến em buồn nhưng mà anh đã hứa và sẽ làm để em không còn nghĩ nhiều vì anh nữa 😘🥰😘.</h1>
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/Z1PYj9h/t-i-xu-ng-6.jpg" alt="t-i-xu-ng-6" border="0" /></a> <!-- Hình capybara -->
+    </div>
+
+    <script>
+        // Hiện phần intro
+        document.getElementById('intro').style.display = 'flex';
+
+        let moveInterval;
+
+        function showMemory() {
+            clearInterval(moveInterval);
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('memory').style.display = 'flex';
+            document.getElementById('memory').style.animation = 'fadeIn 0.5s';
+            startTimer();
+        }
+
+        function startTimer() {
+            const startDate = new Date('2024-10-27T00:00:00'); // Ngày bắt đầu yêu
+            const timerDiv = document.getElementById('timer');
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startDate;
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                timerDiv.innerText = `Đã yêu nhau ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây.`;
+            }, 1000);
+        }
+
+        function moveCard() {
+            const introDiv = document.getElementById('intro');
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 400));
+            introDiv.style.transition = "transform 0.5s";
+            introDiv.style.transform = `translate(${randomX}px, 0)`;
+            setTimeout(() => {
+                introDiv.style.transition = "none";
+                introDiv.style.transform = `translate(0, 0)`;
+            }, 500);
+            document.getElementById('music').play();
+        }
+    </script>
+
+</body>
+</html>
